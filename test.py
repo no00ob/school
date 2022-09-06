@@ -1,0 +1,12 @@
+print("Anna ensimmäinen numero")
+NumeroA = int(input())
+print("Anna toinen numero")
+NumeroB = int(input())
+
+print("Summa on" , NumeroA+NumeroB)
+print("Erotus on" , NumeroA-NumeroB)
+print("Tulo on" , NumeroA*NumeroB)
+print("Osamäärä on" , NumeroA/NumeroB)
+print("Jakojäännös on" , NumeroA%NumeroB)
+print("Potenssi on" , NumeroA**NumeroB)
+print("Erotuksen itseisarvo on" , abs(NumeroA-NumeroB))
