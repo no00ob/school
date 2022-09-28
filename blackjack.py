@@ -15,9 +15,19 @@ firstDrawStr = "\nFirst draw was {0}"
 whatAreWeWorkingTowardStr = "Goal is {0}"
 drawAgainStr = "\nDraw another card? "
 invalidStr = "That's not a valid option!"
-yesses = ["yes", "y", "ye", "joo", "j"]
-nos = ["no", "n", "nope", "ei", "e"]
+yesses = ["yes", "y", "ye"]
+nos = ["no", "n", "nop", "nope"]
 thxForPlayingStr = "\nThanks for playing!"
+betSetStr = "Opponent set their bet to {0}$\nTotal money on table is now {1}$"
+opponentFirstDrawStr = "\nOpponents first draw was {0}"
+opponentBrokeStr = "Your opponent has lost all of their money!"
+yourCardStr = "\nCard drawn was {0}\nYour total card value was {1}"
+opponentsCardStr = "\nOpponents card drawn was {0}\nOpponents total card value was {1}"
+yourCardValStr = "\nYour total card value was {0}"
+opponentsCardValStr = "\nOpponents total card value was {0}"
+undefinedStr = "\nUndefined!"
+gsCardDrawnStr = "\nCard drawn was {0}\nYour total card value is {1}"
+gsOpCardDrawnStr = "\nOpponents card drawn was {0}\nOpponents total card value is {1}"
 
 # Classes
 class participantData:
@@ -95,24 +105,24 @@ def GameResults(showStateInfo = False):
         playerData.currency -= int(playerData.bet)
         aiData.currency += aiData.bet + int(playerData.bet)
         if (showStateInfo):
-            print("\nCard drawn was {0}\nYour total card value was {1}".format(playerData.drawnCardValue, playerData.cardValue), whatAreWeWorkingTowardStr.format(goalAmount))
-            print("\nOpponents card drawn was {0}\nOpponents total card value was {1}".format(aiData.drawnCardValue, aiData.cardValue))
+            print(yourCardStr.format(playerData.drawnCardValue, playerData.cardValue), whatAreWeWorkingTowardStr.format(goalAmount))
+            print(opponentsCardStr.format(aiData.drawnCardValue, aiData.cardValue))
         else:
-            print("\nYour total card value was {1}".format(playerData.cardValue), whatAreWeWorkingTowardStr.format(goalAmount))
-            print("\nOpponents total card value was {1}".format(aiData.cardValue))
+            print(yourCardValStr.format(playerData.cardValue), whatAreWeWorkingTowardStr.format(goalAmount))
+            print(opponentsCardValStr.format(aiData.cardValue))
         print(loseTextStr.format(totalBet))
     elif ((playerData.cardValue > aiData.cardValue and playerData.cardValue <= goalAmount) or aiData.cardValue > goalAmount):
         playerData.currency += totalBet
         aiData.currency -= aiData.bet
         if (showStateInfo):
-            print("\nCard drawn was {0}\nYour total card value was {1}".format(playerData.drawnCardValue, playerData.cardValue), whatAreWeWorkingTowardStr.format(goalAmount))
-            print("\nOpponents card drawn was {0}\nOpponents total card value was {1}".format(aiData.drawnCardValue, aiData.cardValue))
+            print(yourCardStr.format(playerData.drawnCardValue, playerData.cardValue), whatAreWeWorkingTowardStr.format(goalAmount))
+            print(opponentsCardStr.format(aiData.drawnCardValue, aiData.cardValue))
         else:
-            print("\nYour total card value was {1}".format(playerData.cardValue), whatAreWeWorkingTowardStr.format(goalAmount))
-            print("\nOpponents total card value was {1}".format(aiData.cardValue))
+            print(yourCardValStr.format(playerData.cardValue), whatAreWeWorkingTowardStr.format(goalAmount))
+            print(opponentsCardValStr.format(aiData.cardValue))
         print(victoryTextStr.format(totalBet))
     else:
-        print("\nUndefined!")
+        print(undefinedStr)
 
     if (playerData.currency <= 0):
         playerData.currency = 0
@@ -120,7 +130,7 @@ def GameResults(showStateInfo = False):
         gameEnded = True
     elif (aiData.currency <= 0):
         aiData.currency = 0
-        print("Your opponent has lost all of their money!")
+        print(opponentBrokeStr)
         gameEnded = True
     else:
         gameEnded = False
@@ -165,7 +175,7 @@ def SetBet():
     if (aiData.bet > aiData.currency):
         aiData.bet = aiData.currency
     totalBet = playerData.bet + aiData.bet
-    print("Opponent set their bet to {0}$\nTotal money on table is now {1}$".format(aiData.bet, totalBet))
+    print(betSetStr.format(aiData.bet, totalBet))
 
 def Start():
     global firstDraw
@@ -191,11 +201,11 @@ def GameState():
 
     if (firstDraw == True):
         print(firstDrawStr.format(playerData.drawnCardValue), whatAreWeWorkingTowardStr.format(goalAmount))
-        print("\nOpponents first draw was {0}".format(aiData.drawnCardValue))
+        print(opponentFirstDrawStr.format(aiData.drawnCardValue))
         firstDraw = False
     else:
-        print("\nCard drawn was {0}\nYour total card value is {1}".format(playerData.drawnCardValue, playerData.cardValue), whatAreWeWorkingTowardStr.format(goalAmount))
-        print("\nOpponents card drawn was {0}\nOpponents total card value is {1}".format(aiData.drawnCardValue, aiData.cardValue))
+        print(gsCardDrawnStr.format(playerData.drawnCardValue, playerData.cardValue), whatAreWeWorkingTowardStr.format(goalAmount))
+        print(gsOpCardDrawnStr.format(aiData.drawnCardValue, aiData.cardValue))
 
     advance = False
     while (advance == False):
