@@ -22,17 +22,17 @@ print("Juuri astuttuasi ulos, muistat unohtaneesi lompakkosi. Mitä teet?\n[1] J
 lateChoice2 = InputNumber(True)
 
 
-if (lateChoice1 == 1 & lateChoice2 == 1):
+if (lateChoice1 == 1 and lateChoice2 == 1):
     print("Saavut töihin 5 minuuttia myöhässä. Mitä teet?\n[1] Välttele pomoa\n[2] Kävele suoraan työpisteelle")
     bossChoice = InputNumber(True)
-elif (lateChoice1 == 1 & lateChoice2 == 2 or lateChoice1 == 2 & lateChoice2 == 1):
+elif (lateChoice1 == 1 and lateChoice2 == 2 or lateChoice1 == 2 and lateChoice2 == 1):
     print("Saavut töihin 20 minuuttia myöhässä. Mitä teet?\n[1] Välttele pomoa\n[2] Kävele suoraan työpisteelle")
     bossChoice = InputNumber(True)
     if (bossChoice == 1):
         bossChoice = 3
     else:
         bossChoice = 4
-elif (lateChoice1 == 2 & lateChoice2 == 2):
+elif (lateChoice1 == 2 and lateChoice2 == 2):
     print("Saavut töihin 45 minuuttia myöhässä. Mitä teet?\n[1] Välttele pomoa\n[2] Kävele suoraan työpisteelle")
     bossChoice = InputNumber(True)
     if (bossChoice == 1):
